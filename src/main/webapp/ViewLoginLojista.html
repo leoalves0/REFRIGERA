@@ -25,25 +25,26 @@
 <br>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <form class="navbar-form navbar-right" role="search"
-              action="/ViewProduto.jsp">
+        <form id="formLogin" class="navbar-form navbar-right" role="search"
+              action="/ViewProduto.jsp" method="post"
+              onsubmit="javascript:return ValidarLogin(cadastradologin.value,cadastradosenha.value);">
             <div class="form-group">
                 <div class="input-group input-group-md">
                     <span class="input-group-addon" id="sizing-addon1">@</span> <input
-                        type="text" class="form-control" placeholder="Login">
+                        type="text" class="form-control" required placeholder="Login" id="cadastradologin">
                 </div>
                 <div class="input-group input-group-md">
-                    <input type="password" class="form-control" placeholder="Senha">
+                    <input id = "cadastradosenha" type="password" required class="form-control" placeholder="Senha">
                 </div>
                 <div class="input-group input-group-lg">
-                    <button class="btn btn-primary" type="submit">Login</button>
+                    <button class="btn btn-primary" type="submit" onclick="ValidarLogin()">Login</button>
                 </div>
             </div>
 
         </form>
     </div>
 </nav>
-<form method = "post" enctype = "multipart/form-data">
+<form method="post" enctype="multipart/form-data">
 
     <div class="row">
         <div class="col-md-6">
@@ -51,7 +52,10 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Marca</h3>
                 </div>
-                <img alt = "refrigera" src="/images/refrigera.jpeg">
+                <div align="center">
+
+                    </p> <img alt="refrigera" src="images/refrigera.jpeg">
+                </div>
             </div>
 
 
@@ -121,6 +125,35 @@
         //var dataURL = canvas.toDataURL("image/png");
         //return dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
     }
+function ValidarLogin(strLogin,strSenha)
+{
+//linha de debug
+    alert("Login " + strLogin + "\n" + "Senha: " + strSenha);
+     if (strLogin == "")
+      {
+         alert("Preencha corretamente o campo Login!");
+         document.formLogin.cadastradologin.focus();
+         return false;
+      }
+     else if (strSenha == "")
+      {
+         alert("Preencha corretamente o campo Senha!");
+         document.formLogin.cadastradosenha.focus();
+         return false;
+      }
+     else
+      {
+          alert("Login feito com sucesso!!");
+          //poderia mandar o form fazer algo aqui ou mandar para alguma URL com window.location.href = URLDesejada; Ou deixar um action definida na propriedade action da tag form
+         //exemplo de submit dinâmico
+         //document.frmLogin.action = "noticias_login.asp"
+         //document.frmLogin.submit();
+         return true;
+      }
+}
+
+
+
 
 </script>
 </body>
