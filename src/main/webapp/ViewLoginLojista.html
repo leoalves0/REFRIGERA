@@ -17,6 +17,47 @@
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <!-- funções JavaScript -->
+    <script>
+    function UploadImagem(){
+        var imgElem = document.getElementById("logotipo");
+        var imgData = JSON.stringify(getBase64Image(imgElem));
+        console.log(imgData);
+    }
+    function getBase64Image(imgToBase64){
+        var canvas = document.createElement("canvas");
+        canvas.width = imgToBase64.clientWidth;
+        canvas.heigth = imgToBase64.clientHeigth;
+
+        //var contexto = canvas.getContext("2d");
+        //contexto.drawImage(imgToBase64,0,0);
+        //var dataURL = canvas.toDataURL("image/png");
+        //return dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
+    }
+function ValidarLogin()
+{
+    var login = document.getElementById("cadastradologin").value;
+    var senha = document.getElementById("cadastradosenha").value;
+
+     if ((login == "") || (senha == ""))
+      {
+         alert("Os campos login e senha não podem estar em branco!");
+         return false;
+      }
+     else
+      {
+          alert("Login feito com sucesso!!");
+          alert("Login: " + login + "\n" + "Senha: " + senha);
+          //poderia mandar o form fazer algo aqui ou mandar para alguma URL com window.location.href = URLDesejada; Ou deixar um action definida na propriedade action da tag form
+         //exemplo de submit dinâmico
+         //document.frmLogin.action = "noticias_login.asp"
+         //document.frmLogin.submit();
+         return true;
+      }
+}
+
+
+    </script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Cadastro de Lojistas</title>
@@ -27,14 +68,16 @@
     <div class="container-fluid">
         <form id="formLogin" class="navbar-form navbar-right" role="search"
               action="/ViewProduto.jsp" method="post"
-              onsubmit="javascript:return ValidarLogin(cadastradologin.value,cadastradosenha.value);">
+              onsubmit="ValidarLogin();">
             <div class="form-group">
                 <div class="input-group input-group-md">
                     <span class="input-group-addon" id="sizing-addon1">@</span> <input
-                        type="text" class="form-control" required placeholder="Login" id="cadastradologin">
+                        type="text" class="form-control"
+                        placeholder="Login"
+                        id="cadastradologin" required>
                 </div>
                 <div class="input-group input-group-md">
-                    <input id = "cadastradosenha" type="password" required class="form-control" placeholder="Senha">
+                    <input id="cadastradosenha" type="password" class="form-control" placeholder="Senha" required>
                 </div>
                 <div class="input-group input-group-lg">
                     <button class="btn btn-primary" type="submit" onclick="ValidarLogin()">Login</button>
@@ -109,52 +152,5 @@
     </div>
     </div>
 </form>
-<script>
-    function UploadImagem(){
-        var imgElem = document.getElementById('logotipo');
-        var imgData = JSON.stringify(getBase64Image(imgElem));
-        console.log(imgData);
-    }
-    function getBase64Image(imgToBase64){
-        var canvas = document.createElement("canvas");
-        canvas.width = imgToBase64.clientWidth;
-        canvas.heigth = imgToBase64.clientHeigth;
-
-        //var contexto = canvas.getContext("2d");
-        //contexto.drawImage(imgToBase64,0,0);
-        //var dataURL = canvas.toDataURL("image/png");
-        //return dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
-    }
-function ValidarLogin(strLogin,strSenha)
-{
-//linha de debug
-    alert("Login " + strLogin + "\n" + "Senha: " + strSenha);
-     if (strLogin == "")
-      {
-         alert("Preencha corretamente o campo Login!");
-         document.formLogin.cadastradologin.focus();
-         return false;
-      }
-     else if (strSenha == "")
-      {
-         alert("Preencha corretamente o campo Senha!");
-         document.formLogin.cadastradosenha.focus();
-         return false;
-      }
-     else
-      {
-          alert("Login feito com sucesso!!");
-          //poderia mandar o form fazer algo aqui ou mandar para alguma URL com window.location.href = URLDesejada; Ou deixar um action definida na propriedade action da tag form
-         //exemplo de submit dinâmico
-         //document.frmLogin.action = "noticias_login.asp"
-         //document.frmLogin.submit();
-         return true;
-      }
-}
-
-
-
-
-</script>
 </body>
 </html>
