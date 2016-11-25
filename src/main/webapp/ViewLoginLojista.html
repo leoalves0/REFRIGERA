@@ -19,107 +19,108 @@
             crossorigin="anonymous"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>View de Cadastro</title>
+    <title>Cadastro de Lojistas</title>
 </head>
 <body>
+<br>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <form class="navbar-form navbar-left" role="search"
+        <form class="navbar-form navbar-right" role="search"
               action="/ViewProduto.jsp">
             <div class="form-group">
-                <h3>Lojista cadastrado</h3>
-                <div class="input-group input-group-lg">
+                <div class="input-group input-group-md">
                     <span class="input-group-addon" id="sizing-addon1">@</span> <input
                         type="text" class="form-control" placeholder="Login">
                 </div>
-                <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" placeholder="Senha">
+                <div class="input-group input-group-md">
+                    <input type="password" class="form-control" placeholder="Senha">
                 </div>
                 <div class="input-group input-group-lg">
                     <button class="btn btn-primary" type="submit">Login</button>
                 </div>
-
-
             </div>
 
         </form>
     </div>
 </nav>
-<form action="ServletLojista" method="post">
+<form method = "post" enctype = "multipart/form-data">
 
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Cadastrados da loja</h3>
+                    <h3 class="panel-title">Marca</h3>
                 </div>
-                <p>inserir table</p>
+                <img alt = "refrigera" src="/images/refrigera.jpeg">
             </div>
+
 
         </div>
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Cadastrados da loja</h3>
+                    <h3 class="panel-title">Cadastrar sua loja</h3>
                 </div>
 
                 <div class="panel-body">
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon" id="sizing-addon1">Nome</span> <input
+                    <div class="input-group input-group-md">
+                        <span class="input-group-addon" id="sizing-addon">Nome</span> <input
                             type="text" class="form-control" placeholder="Nome Fantasia"
-                            name="nome" id="nome" aria-describedby="sizing-addon1" required>
+                            name="nome" id="nome" aria-describedby="sizing-addon" required>
                     </div>
                     <br>
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon" id="sizing-addon1">Endere&ccedil;o</span>
+                    <div class="input-group input-group-md">
+                        <span class="input-group-addon" id="sizing-addon">URL</span>
                         <input type="text" class="form-control" name="endereco"
-                               id="endereco" placeholder="Avenida Francisco Glicerio, 1936"
-                               aria-describedby="sizing-addon1" required>
+                               id="endereco" placeholder="/Submarino"
+                               aria-describedby="sizing-addon" required>
                     </div>
                     <br>
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon" id="sizing-addon1">CNPJ</span> <input
+                    <div class="input-group input-group-md">
+                        <span class="input-group-addon" id="sizing-addon">CNPJ</span> <input
                             type="number" class="form-control" placeholder="39903017804"
-                            name="cnpj" id="cnpj" aria-describedby="sizing-addon1" required>
+                            name="cnpj" id="cnpj" aria-describedby="sizing-addon" required>
                     </div>
                     <br>
-                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                        <div class="fileinput-new thumbnail"
-                             style="width: 200px; height: 150px;">
-                            <img data-src="holder.js/100%x100%" alt="...">
-                        </div>
-                        <div class="fileinput-preview fileinput-exists thumbnail"
-                             style="max-width: 2000px; max-height: 1500px;"></div>
-                        <div>
-								<span class="btn btn-default btn-file"> <input
-                                        type="file" name="..."></span> <a href=""
-                                                                          class="btn btn-warning fileinput-exists"
-                                                                          data-dismiss="fileinput">Remove</a>
-                            <div class="btn-group btn-group-left  role="
-                                 group
-                            " aria-label="...">
-                            <button type="submit" class="btn btn-primary">Salvar
-                                Loja
-                            </button>
-                        </div>
+                    <div class="input-group input-group-md">
+                        <span class="input-group-addon" id="sizing-addon">Senha</span>
+                        <input type="password"
+                               class="form-control"
+                               placeholder="********"
+                               name="senha" id="senha"
+                               aria-describedby="sizing-addon"
+                               required>
                     </div>
-
+                    <br>
+                    <div>
+                        <input id="logotipo" type="file"/>
+                    </div>
+                    <br>
+                    <div class="input-group input-group-md">
+                        <button class="btn btn-primary" type="submit" onclick="UploadImagem()">Cadastrar</button>
+                    </div>
                 </div>
             </div>
         </div>
-
-
     </div>
     </div>
-
-
 </form>
-
 <script>
-		function logar() {
-			document.getElementById("LoginLojista").submit;
+    function UploadImagem(){
+        var imgElem = document.getElementById('logotipo');
+        var imgData = JSON.stringify(getBase64Image(imgElem));
+        console.log(imgData);
+    }
+    function getBase64Image(imgToBase64){
+        var canvas = document.createElement("canvas");
+        canvas.width = imgToBase64.clientWidth;
+        canvas.heigth = imgToBase64.clientHeigth;
 
-		}
+        //var contexto = canvas.getContext("2d");
+        //contexto.drawImage(imgToBase64,0,0);
+        //var dataURL = canvas.toDataURL("image/png");
+        //return dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
+    }
 
 </script>
 </body>
